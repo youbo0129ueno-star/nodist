@@ -1,0 +1,16 @@
+{
+  "id": "level_08",
+  "title": "Delete by Value",
+  "title_ja": "指定値のノードを削除する",
+  "previous_level": "level_07",
+  "hints": [
+    "Keep both prev and current.",
+    "Deleting the head is a special case.",
+    "Free the removed node."
+  ],
+  "hints_ja": [
+    "prev と current の両方を持って進みます。",
+    "先頭ノードを削除する場合は特別に扱います。",
+    "外したノードは free します。"
+  ]
+}

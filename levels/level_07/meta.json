@@ -1,0 +1,16 @@
+{
+  "id": "level_07",
+  "title": "Return the Found Node",
+  "title_ja": "見つかったノードへのポインタを返す",
+  "previous_level": "level_06",
+  "hints": [
+    "The return type is struct Node *.",
+    "Return current when current->key matches.",
+    "Return NULL if the loop finishes."
+  ],
+  "hints_ja": [
+    "返り値の型は struct Node * です。",
+    "current->key が一致したら current を返します。",
+    "最後まで見つからなければ NULL を返します。"
+  ]
+}

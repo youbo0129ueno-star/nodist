@@ -1,0 +1,16 @@
+{
+  "id": "level_00",
+  "title": "Define a Node Struct",
+  "title_ja": "Node構造体を定義する",
+  "previous_level": null,
+  "hints": [
+    "A list node needs a value and a pointer to the next node.",
+    "Inside a self-referential struct, write struct Node *next.",
+    "Use NULL when there is no next node."
+  ],
+  "hints_ja": [
+    "リストのノードには値と次のノードへのポインタが必要です。",
+    "自分自身と同じ型を指すには struct Node *next と書きます。",
+    "次のノードがない場合は NULL を使います。"
+  ]
+}

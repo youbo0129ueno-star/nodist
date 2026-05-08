@@ -1,0 +1,16 @@
+{
+  "id": "level_12",
+  "title": "Delete a Doubly Linked Node",
+  "title_ja": "双方向リストからノードを削除する",
+  "previous_level": "level_11",
+  "hints": [
+    "Read p = x->prev and q = x->next first.",
+    "If p is NULL, x is the head.",
+    "If q exists, set q->prev to p."
+  ],
+  "hints_ja": [
+    "先に p = x->prev と q = x->next を読みます。",
+    "p が NULL なら x は先頭です。",
+    "q が存在するなら q->prev を p にします。"
+  ]
+}

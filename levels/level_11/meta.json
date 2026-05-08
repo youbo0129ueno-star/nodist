@@ -1,0 +1,16 @@
+{
+  "id": "level_11",
+  "title": "Insert After a Doubly Linked Node",
+  "title_ja": "双方向リストへ途中挿入する",
+  "previous_level": "level_10",
+  "hints": [
+    "Let q be p->next.",
+    "Set x->prev and x->next first.",
+    "Then update p->next and q->prev if q exists."
+  ],
+  "hints_ja": [
+    "q を p->next として考えます。",
+    "まず x->prev と x->next を決めます。",
+    "その後で p->next と、q があれば q->prev を更新します。"
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "insert_middle",
+    "input": "3 1 6\n4 9 16\n",
+    "expected": "4 9 6 16\n"
+  },
+  {
+    "name": "insert_head",
+    "input": "3 -1 6\n4 9 16\n",
+    "expected": "6 4 9 16\n"
+  },
+  {
+    "name": "insert_tail",
+    "input": "3 2 6\n4 9 16\n",
+    "expected": "4 9 16 6\n"
+  },
+  {
+    "name": "insert_into_empty",
+    "input": "0 -1 6\n\n",
+    "expected": "6\n"
+  },
+  {
+    "name": "insert_negative",
+    "input": "2 0 -3\n4 9\n",
+    "expected": "4 -3 9\n"
+  },
+  {
+    "name": "insert_duplicate",
+    "input": "3 1 9\n4 9 16\n",
+    "expected": "4 9 9 16\n"
+  }
+]

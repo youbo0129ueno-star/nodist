@@ -1,0 +1,27 @@
+[
+  {
+    "name": "three_nodes",
+    "input": "3\n4 9 16\n",
+    "expected": "4 9 16\n"
+  },
+  {
+    "name": "single_node",
+    "input": "1\n5\n",
+    "expected": "5\n"
+  },
+  {
+    "name": "five_nodes",
+    "input": "5\n1 2 3 4 5\n",
+    "expected": "1 2 3 4 5\n"
+  },
+  {
+    "name": "with_negative",
+    "input": "4\n-2 0 8 -5\n",
+    "expected": "-2 0 8 -5\n"
+  },
+  {
+    "name": "duplicates",
+    "input": "4\n7 7 7 7\n",
+    "expected": "7 7 7 7\n"
+  }
+]

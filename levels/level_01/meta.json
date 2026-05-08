@@ -1,0 +1,16 @@
+{
+  "id": "level_01",
+  "title": "Allocate One Node",
+  "title_ja": "mallocで1個のノードを作る",
+  "previous_level": "level_00",
+  "hints": [
+    "malloc returns a pointer.",
+    "Use node->key when node is a pointer.",
+    "Free the node before the program exits."
+  ],
+  "hints_ja": [
+    "malloc の返り値はポインタです。",
+    "node がポインタなら node->key の形でメンバにアクセスします。",
+    "プログラム終了前に free(node) します。"
+  ]
+}

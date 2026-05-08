@@ -1,0 +1,16 @@
+{
+  "id": "level_14",
+  "title": "List Operation Complexity",
+  "title_ja": "リスト操作の計算量を答える",
+  "previous_level": "level_13",
+  "hints": [
+    "If an operation traverses the whole list, it is O(n).",
+    "If it only rewrites a fixed number of pointers, it is O(1).",
+    "Deleting by key includes search."
+  ],
+  "hints_ja": [
+    "リスト全体をたどる操作は O(n) です。",
+    "定数個のポインタを書き換えるだけなら O(1) です。",
+    "key を指定した削除は、先に探索が必要です。"
+  ]
+}

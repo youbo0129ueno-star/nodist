@@ -1,0 +1,32 @@
+[
+  {
+    "name": "delete_middle",
+    "input": "4 1\n4 9 16 25\n",
+    "expected": "4 16 25\n"
+  },
+  {
+    "name": "delete_head",
+    "input": "3 0\n4 9 16\n",
+    "expected": "9 16\n"
+  },
+  {
+    "name": "delete_tail",
+    "input": "3 2\n4 9 16\n",
+    "expected": "4 9\n"
+  },
+  {
+    "name": "delete_only",
+    "input": "1 0\n4\n",
+    "expected": "EMPTY\n"
+  },
+  {
+    "name": "delete_from_two_head",
+    "input": "2 0\n4 9\n",
+    "expected": "9\n"
+  },
+  {
+    "name": "delete_from_two_tail",
+    "input": "2 1\n4 9\n",
+    "expected": "4\n"
+  }
+]

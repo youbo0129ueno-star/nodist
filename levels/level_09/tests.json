@@ -1,0 +1,27 @@
+[
+  {
+    "name": "free_three",
+    "input": "3\n4 9 16\n",
+    "expected": "freed 3\n"
+  },
+  {
+    "name": "free_empty",
+    "input": "0\n\n",
+    "expected": "freed 0\n"
+  },
+  {
+    "name": "free_one",
+    "input": "1\n5\n",
+    "expected": "freed 1\n"
+  },
+  {
+    "name": "free_five",
+    "input": "5\n1 2 3 4 5\n",
+    "expected": "freed 5\n"
+  },
+  {
+    "name": "free_with_negative",
+    "input": "4\n-1 0 -2 3\n",
+    "expected": "freed 4\n"
+  }
+]

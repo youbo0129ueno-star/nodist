@@ -1,0 +1,27 @@
+[
+  {
+    "name": "search",
+    "input": "search\n",
+    "expected": "O(n)\n"
+  },
+  {
+    "name": "insert",
+    "input": "insert_after_known_node\n",
+    "expected": "O(1)\n"
+  },
+  {
+    "name": "delete_known",
+    "input": "delete_known_node_doubly\n",
+    "expected": "O(1)\n"
+  },
+  {
+    "name": "delete_by_key",
+    "input": "delete_by_key\n",
+    "expected": "O(n)\n"
+  },
+  {
+    "name": "minimum",
+    "input": "minimum\n",
+    "expected": "O(n)\n"
+  }
+]

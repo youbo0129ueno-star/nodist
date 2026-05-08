@@ -1,0 +1,16 @@
+{
+  "id": "level_03",
+  "title": "Traverse a List",
+  "title_ja": "先頭から末尾まで走査する",
+  "previous_level": "level_02",
+  "hints": [
+    "Use a current pointer.",
+    "Continue while current is not NULL.",
+    "Move with current = current->next."
+  ],
+  "hints_ja": [
+    "現在地を表す current ポインタを使います。",
+    "current が NULL でない間だけ続けます。",
+    "current = current->next で次へ進みます。"
+  ]
+}

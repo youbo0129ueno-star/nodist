@@ -1,94 +1,126 @@
-# algo-trainer
+# nodist
 
-アルゴリズムとデータ構造の講義内容と、実際にC言語でコードを書く演習の難易度差を埋めるためのCLI教材リポジトリです。
+アルゴリズムとデータ構造の講義内容と、実際にC言語でコードを書く演習の難易度差を埋めるためのCLI教材です。
+
+構成と体験は Pandit 形式を参考にしています。`levels/level_XX/` に問題データを置き、CLIから `list`, `level`, `hint`, `answer`, `explain`, `submit` を使って段階的に進めます。
 
 ## 目的
 
 - 学生が `git clone` してすぐ使える教材にする
 - C言語のアルゴリズム演習をローカルの `gcc` または `clang` で自動採点する
-- 将来的にGitHub PagesでWeb GUI化できるよう、問題データと採点ロジックを分離する
+- 将来的にGitHub PagesでWeb GUI化できるよう、レベル資産と採点ロジックを分離する
 
-## セットアップ方法
+## セットアップ
 
-### 前提条件
+前提:
 
 - Python 3.9以上
 - `gcc` または `clang`
 - macOS または Linux
 
-### インストール
+そのまま使う場合:
 
 ```bash
 git clone <this-repository-url>
-cd algo-trainer
-python3 --version
-gcc --version
+cd nodist
+python3 -m app.cli list
 ```
 
-Pythonの外部パッケージは使っていません。`requirements.txt` は将来の依存追加用に置いています。
+Pandit の `pandit list` と同じように、この教材では `nodist` コマンドを使います。
+
+```bash
+python3 -m pip install -e .
+nodist list
+```
+
+以後は `python3 -m app.cli ...` ではなく、次のように起動できます。
+
+```bash
+nodist list
+nodist level level_00
+nodist submit level_00
+```
+
+Pythonの外部パッケージは使っていません。
+
+## 主なコマンド
+
+```bash
+nodist list
+nodist level level_00
+nodist hint level_00
+nodist answer level_00
+nodist explain level_00
+nodist submit level_00
+```
+
+`level` コマンドは、カレントディレクトリの `answer.c` をそのレベルのテンプレートで上書きします。作業ファイルは常に1つだけです。
 
 ## 実行例
 
 ```bash
-python3 src/judge.py linear_search submissions/linear_search.c
+nodist level level_00
+nodist submit level_00
 ```
 
-出力例:
+直接採点だけしたい場合:
 
-```text
-=== linear_search ===
-Compiler: clang
-Compile: OK
-Test sample1: AC (0.000s)
-Test not_found: AC (0.000s)
-Test first_position: AC (0.000s)
-
-Result: 3/3 passed
+```bash
+python3 src/judge.py level_00 levels/level_00/answer.c
 ```
 
-まとめて動かす場合:
+まとめて正解例を確認する場合:
 
 ```bash
 make test
 ```
 
-## 問題一覧
-
-- `linear_search`: 配列 `A` から値 `x` を探し、見つかれば0-indexedの位置、なければ `-1` を出力
-- `max_value`: 配列 `A` の最大値を出力
-- `binary_search`: 昇順配列 `A` から値 `x` を二分探索し、見つかれば0-indexedの位置、なければ `-1` を出力
-
-## 採点器の仕様
+教材作成者向けの裏検証コマンド:
 
 ```bash
-python3 src/judge.py <problem_id> <submission_file>
+nodist __validate_levels
+make validate
 ```
 
-採点器は次の流れで動きます。
+## レベル一覧
 
-1. `problems/<problem_id>/tests.json` を読む
-2. 指定された提出Cファイルを一時ディレクトリでコンパイルする
-3. 各テストケースの入力を標準入力に渡して実行する
-4. 標準出力が期待値と完全一致するか判定する
-5. 最後に `Result: 2/3 passed` のように集計を表示する
+- `level_00`: `struct Node` を定義する
+- `level_01`: `malloc` で1個のノードを作る
+- `level_02`: 2個のノードを `next` でつなぐ
+- `level_03`: 先頭から末尾まで走査する
+- `level_04`: 末尾にノードを追加する
+- `level_05`: 先頭にノードを追加する
+- `level_06`: リストから値を探す
+- `level_07`: 見つかったノードへのポインタを返す
+- `level_08`: 指定値のノードを削除する
+- `level_09`: リスト全体を解放する
+- `level_10`: 双方向リストの `Node` を定義する
+- `level_11`: 双方向リストへ途中挿入する
+- `level_12`: 双方向リストからノードを削除する
+- `level_13`: 最大値・最小値を求める
+- `level_14`: リスト操作の計算量を答える
 
-コンパイルには以下のオプションを使います。
+進捗は `~/.nodist/progress.json` に保存されます。最初は `level_00` だけが解放され、クリアすると次のレベルが解放されます。
+
+## レベル構成
 
 ```text
--std=c11 -Wall -Wextra
+levels/
+  level_00/
+    meta.json
+    task_ja.md
+    task.md
+    explanation_ja.md
+    template.c
+    answer.c
+    tests.json
 ```
 
-結果の種類:
+`meta.json` はタイトル、前提レベル、ヒントを管理します。`task_ja.md` と `task.md` は問題文です。`tests.json` は採点用テストケースです。
 
-| 表示 | 意味 |
-| --- | --- |
-| AC | 正解。出力が期待値と完全一致した |
-| WA | 不正解。出力が期待値と一致しない |
-| CE | コンパイルエラー |
-| RE | 実行時エラー |
-| TLE | 実行時間制限超過 |
+詳しい仕様は [docs/level-spec.md](docs/level-spec.md) を参照してください。
 
-実行時間制限はMVPでは2秒です。`src/judge.py` の `TIME_LIMIT_SECONDS` で管理しています。
+教材全体の分割案は [docs/curriculum.md](docs/curriculum.md) にまとめています。
 
 ## tests.json の形式
 
@@ -107,38 +139,67 @@ python3 src/judge.py <problem_id> <submission_file>
 ]
 ```
 
-- `name`: テストケース名
-- `input`: 標準入力に渡す文字列
-- `expected`: 期待する標準出力
+採点では標準出力が `expected` と完全一致する必要があります。
 
-## 問題の追加方法
+## 採点器の仕様
 
-1. `problems/<problem_id>/` を作る
-2. `statement.md`, `template.c`, `solution.c`, `tests.json` を追加する
+提出Cファイルは一時ディレクトリでコンパイルされます。
+
+```text
+-std=c11 -Wall -Wextra
+```
+
+結果の種類:
+
+| 表示 | 意味 |
+| --- | --- |
+| AC | 正解。出力が期待値と完全一致した |
+| WA | 不正解。出力が期待値と一致しない |
+| CE | コンパイルエラー |
+| RE | 実行時エラー |
+| TLE | 実行時間制限超過 |
+
+実行時間制限はMVPでは2秒です。
+
+`submit` はデフォルトでカレントディレクトリの `answer.c` を提出します。別ファイルを採点したい場合だけ、明示的に指定できます。
+
+```bash
+nodist submit level_00 path/to/file.c
+```
+
+## 新しいレベルの追加方法
+
+1. `levels/level_XX/` を作る
+2. `meta.json`, `task_ja.md`, `template.c`, `answer.c`, `tests.json` を追加する
 3. 正解例が通ることを確認する
 
 ```bash
-python3 src/judge.py <problem_id> problems/<problem_id>/solution.c
+python3 src/judge.py level_XX levels/level_XX/answer.c
 ```
-
-学生用の提出ファイルを用意する場合は、`problems/<problem_id>/template.c` を `submissions/<problem_id>.c` にコピーして使います。
 
 ## ディレクトリ構成
 
 ```text
-algo-trainer/
-├── README.md
-├── Makefile
-├── requirements.txt
+nodist/
+├── app/
+│   ├── cli.py
+│   ├── config.py
+│   ├── judge.py
+│   ├── progress.py
+│   └── registry.py
+├── docs/
+│   ├── architecture.md
+│   ├── level-spec.md
+│   └── roadmap.md
+├── levels/
+│   ├── level_00/
+│   ├── level_01/
+│   └── level_14/
 ├── src/
 │   └── judge.py
-├── problems/
-│   ├── linear_search/
-│   ├── max_value/
-│   └── binary_search/
-├── submissions/
-└── docs/
-    └── roadmap.md
+├── Makefile
+├── pyproject.toml
+└── README.md
 ```
 
 ## セキュリティ上の注意
@@ -149,6 +210,4 @@ algo-trainer/
 
 ## 将来的なWeb GUI化構想
 
-問題文はMarkdown、テストケースはJSONとして管理しているため、GitHub Pages上のWeb GUIから同じ問題データを読み込めます。まずはブラウザで問題文とテンプレートを表示し、ローカルCLIで採点する形を維持します。その後、採点結果JSON出力やブラウザ内エディタを追加すると、CLIとWebの両方で同じ教材データを使えるようになります。
-
-今後の開発タスクは [docs/roadmap.md](docs/roadmap.md) にまとめています。
+問題文はMarkdown、テストケースはJSON、メタ情報は `meta.json` として管理しているため、GitHub Pages上のWeb GUIから同じレベル資産を読み込めます。まずはCLIで進捗と採点を完成させ、その後に採点結果JSON出力やブラウザ内エディタを追加すると、CLIとWebの両方で同じ教材データを使えるようになります。

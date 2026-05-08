@@ -1,0 +1,16 @@
+{
+  "id": "level_13",
+  "title": "Find Minimum and Maximum",
+  "title_ja": "最大値・最小値を求める",
+  "previous_level": "level_12",
+  "hints": [
+    "A list is not sorted unless the problem says so.",
+    "Keep pointers to the current minimum and maximum nodes.",
+    "Traverse all nodes once."
+  ],
+  "hints_ja": [
+    "リストは、問題で指定されない限り整列されていません。",
+    "現在の最小ノードと最大ノードへのポインタを持ちます。",
+    "全ノードを1回たどります。"
+  ]
+}

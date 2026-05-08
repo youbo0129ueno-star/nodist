@@ -1,0 +1,27 @@
+[
+  {
+    "name": "ascending",
+    "input": "3 8\n",
+    "expected": "3 8\n"
+  },
+  {
+    "name": "mixed",
+    "input": "-1 5\n",
+    "expected": "-1 5\n"
+  },
+  {
+    "name": "same_values",
+    "input": "7 7\n",
+    "expected": "7 7\n"
+  },
+  {
+    "name": "zero_first",
+    "input": "0 -3\n",
+    "expected": "0 -3\n"
+  },
+  {
+    "name": "descending_values",
+    "input": "12 4\n",
+    "expected": "12 4\n"
+  }
+]

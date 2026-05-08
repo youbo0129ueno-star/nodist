@@ -1,0 +1,16 @@
+{
+  "id": "level_09",
+  "title": "Free the Whole List",
+  "title_ja": "リスト全体を解放する",
+  "previous_level": "level_08",
+  "hints": [
+    "Save current->next before calling free.",
+    "After free(current), do not read current->next.",
+    "Count each freed node."
+  ],
+  "hints_ja": [
+    "free する前に current->next を保存します。",
+    "free(current) の後で current->next を読んではいけません。",
+    "解放したノード数を数えます。"
+  ]
+}

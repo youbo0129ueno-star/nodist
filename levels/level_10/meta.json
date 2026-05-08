@@ -1,0 +1,16 @@
+{
+  "id": "level_10",
+  "title": "Define a Doubly Linked Node",
+  "title_ja": "双方向リストのNodeを定義する",
+  "previous_level": "level_09",
+  "hints": [
+    "A doubly linked node has prev and next.",
+    "Both prev and next are struct DNode pointers.",
+    "A single node has both pointers set to NULL."
+  ],
+  "hints_ja": [
+    "双方向リストのノードは prev と next を持ちます。",
+    "prev も next も struct DNode へのポインタです。",
+    "1個だけのノードでは、両方とも NULL にします。"
+  ]
+}

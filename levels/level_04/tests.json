@@ -1,0 +1,27 @@
+[
+  {
+    "name": "append_to_three",
+    "input": "3\n4 9 16\n6\n",
+    "expected": "4 9 16 6\n"
+  },
+  {
+    "name": "append_to_empty",
+    "input": "0\n\n5\n",
+    "expected": "5\n"
+  },
+  {
+    "name": "append_negative",
+    "input": "2\n1 2\n-3\n",
+    "expected": "1 2 -3\n"
+  },
+  {
+    "name": "append_zero",
+    "input": "3\n-1 -2 -3\n0\n",
+    "expected": "-1 -2 -3 0\n"
+  },
+  {
+    "name": "append_duplicate",
+    "input": "3\n5 6 5\n5\n",
+    "expected": "5 6 5 5\n"
+  }
+]

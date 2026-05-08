@@ -1,0 +1,16 @@
+{
+  "id": "level_06",
+  "title": "Search a List",
+  "title_ja": "リストから値を探す",
+  "previous_level": "level_05",
+  "hints": [
+    "Start from head.",
+    "Compare current->key with the target.",
+    "Return 1 as soon as you find the target."
+  ],
+  "hints_ja": [
+    "head から始めます。",
+    "current->key と探す値を比較します。",
+    "見つかったらその時点で 1 を返します。"
+  ]
+}

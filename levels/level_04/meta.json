@@ -1,0 +1,16 @@
+{
+  "id": "level_04",
+  "title": "Append to Tail",
+  "title_ja": "末尾にノードを追加する",
+  "previous_level": "level_03",
+  "hints": [
+    "If head is NULL, the new node becomes the head.",
+    "Otherwise, move until current->next is NULL.",
+    "Set the last node's next to the new node."
+  ],
+  "hints_ja": [
+    "head が NULL なら新ノードがそのまま先頭になります。",
+    "そうでなければ current->next が NULL になるまで進みます。",
+    "最後のノードの next に新ノードをつなぎます。"
+  ]
+}

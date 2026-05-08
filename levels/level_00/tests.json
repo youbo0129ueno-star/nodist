@@ -1,0 +1,27 @@
+[
+  {
+    "name": "positive",
+    "input": "42\n",
+    "expected": "42 NULL\n"
+  },
+  {
+    "name": "negative",
+    "input": "-7\n",
+    "expected": "-7 NULL\n"
+  },
+  {
+    "name": "zero",
+    "input": "0\n",
+    "expected": "0 NULL\n"
+  },
+  {
+    "name": "large",
+    "input": "100000\n",
+    "expected": "100000 NULL\n"
+  },
+  {
+    "name": "minus_one",
+    "input": "-1\n",
+    "expected": "-1 NULL\n"
+  }
+]

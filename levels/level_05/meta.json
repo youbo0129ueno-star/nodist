@@ -1,0 +1,16 @@
+{
+  "id": "level_05",
+  "title": "Push to Front",
+  "title_ja": "先頭にノードを追加する",
+  "previous_level": "level_04",
+  "hints": [
+    "The new node points to the old head.",
+    "Then the new node becomes the head.",
+    "This operation does not need traversal."
+  ],
+  "hints_ja": [
+    "新ノードの next は古い head を指します。",
+    "その後、新ノードが新しい head になります。",
+    "先頭追加ではリストを走査する必要はありません。"
+  ]
+}

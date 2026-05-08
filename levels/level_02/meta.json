@@ -1,0 +1,16 @@
+{
+  "id": "level_02",
+  "title": "Connect Two Nodes",
+  "title_ja": "2個のノードをnextでつなぐ",
+  "previous_level": "level_01",
+  "hints": [
+    "Create two nodes.",
+    "Set first->next to second.",
+    "Start printing from first and move through next."
+  ],
+  "hints_ja": [
+    "ノードを2個作ります。",
+    "first->next に second を入れます。",
+    "first から始めて next をたどって出力します。"
+  ]
+}

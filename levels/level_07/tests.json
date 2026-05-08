@@ -1,0 +1,32 @@
+[
+  {
+    "name": "found",
+    "input": "5 16\n4 9 16 25 36\n",
+    "expected": "FOUND 16\n"
+  },
+  {
+    "name": "not_found",
+    "input": "5 8\n4 9 16 25 36\n",
+    "expected": "NOT FOUND\n"
+  },
+  {
+    "name": "found_head",
+    "input": "5 4\n4 9 16 25 36\n",
+    "expected": "FOUND 4\n"
+  },
+  {
+    "name": "found_tail",
+    "input": "5 36\n4 9 16 25 36\n",
+    "expected": "FOUND 36\n"
+  },
+  {
+    "name": "empty",
+    "input": "0 1\n\n",
+    "expected": "NOT FOUND\n"
+  },
+  {
+    "name": "duplicate_returns_value",
+    "input": "4 7\n1 7 7 9\n",
+    "expected": "FOUND 7\n"
+  }
+]

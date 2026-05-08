@@ -1,0 +1,32 @@
+[
+  {
+    "name": "found",
+    "input": "4 9\n4 9 16 25\n",
+    "expected": "FOUND\n"
+  },
+  {
+    "name": "not_found",
+    "input": "4 7\n4 9 16 25\n",
+    "expected": "NOT FOUND\n"
+  },
+  {
+    "name": "found_head",
+    "input": "4 4\n4 9 16 25\n",
+    "expected": "FOUND\n"
+  },
+  {
+    "name": "found_tail",
+    "input": "4 25\n4 9 16 25\n",
+    "expected": "FOUND\n"
+  },
+  {
+    "name": "empty",
+    "input": "0 5\n\n",
+    "expected": "NOT FOUND\n"
+  },
+  {
+    "name": "found_negative",
+    "input": "3 -2\n1 -2 3\n",
+    "expected": "FOUND\n"
+  }
+]
