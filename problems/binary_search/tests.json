@@ -1,0 +1,22 @@
+[
+  {
+    "name": "sample1",
+    "input": "5 4\n1 2 3 4 5\n",
+    "expected": "3\n"
+  },
+  {
+    "name": "not_found",
+    "input": "5 6\n1 2 3 4 5\n",
+    "expected": "-1\n"
+  },
+  {
+    "name": "left_edge",
+    "input": "6 -3\n-3 -1 0 2 4 8\n",
+    "expected": "0\n"
+  },
+  {
+    "name": "right_edge",
+    "input": "6 8\n-3 -1 0 2 4 8\n",
+    "expected": "5\n"
+  }
+]

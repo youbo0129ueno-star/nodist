@@ -4,76 +4,93 @@
 
 ## 目的
 
-- 学生が `git clone` してすぐ使える教材を提供
-- C言語のアルゴリズム演習をローカルの gcc/clang で自動採点
-- 将来的に GitHub Pages による Web GUI化に対応できるよう、問題データと採点ロジックを分離
+- 学生が `git clone` してすぐ使える教材にする
+- C言語のアルゴリズム演習をローカルの `gcc` または `clang` で自動採点する
+- 将来的にGitHub PagesでWeb GUI化できるよう、問題データと採点ロジックを分離する
 
 ## セットアップ方法
 
 ### 前提条件
 
-- Python 3.8 以上
-- gcc または clang (macOS / Linux)
-- git
+- Python 3.9以上
+- `gcc` または `clang`
+- macOS または Linux
 
 ### インストール
 
 ```bash
-git clone https://github.com/youbo0129ueno-star/algo-trainer.git
+git clone <this-repository-url>
 cd algo-trainer
-pip install -r requirements.txt
+python3 --version
+gcc --version
 ```
 
-## 使い方
+Pythonの外部パッケージは使っていません。`requirements.txt` は将来の依存追加用に置いています。
 
-### 採点の実行
+## 実行例
+
+```bash
+python3 src/judge.py linear_search submissions/linear_search.c
+```
+
+出力例:
+
+```text
+=== linear_search ===
+Compiler: clang
+Compile: OK
+Test sample1: AC (0.000s)
+Test not_found: AC (0.000s)
+Test first_position: AC (0.000s)
+
+Result: 3/3 passed
+```
+
+まとめて動かす場合:
+
+```bash
+make test
+```
+
+## 問題一覧
+
+- `linear_search`: 配列 `A` から値 `x` を探し、見つかれば0-indexedの位置、なければ `-1` を出力
+- `max_value`: 配列 `A` の最大値を出力
+- `binary_search`: 昇順配列 `A` から値 `x` を二分探索し、見つかれば0-indexedの位置、なければ `-1` を出力
+
+## 採点器の仕様
 
 ```bash
 python3 src/judge.py <problem_id> <submission_file>
 ```
 
-**例：**
+採点器は次の流れで動きます。
 
-```bash
-# linear_search 問題を採点
-python3 src/judge.py linear_search submissions/linear_search.c
+1. `problems/<problem_id>/tests.json` を読む
+2. 指定された提出Cファイルを一時ディレクトリでコンパイルする
+3. 各テストケースの入力を標準入力に渡して実行する
+4. 標準出力が期待値と完全一致するか判定する
+5. 最後に `Result: 2/3 passed` のように集計を表示する
 
-# max_value 問題を採点
-python3 src/judge.py max_value submissions/max_value.c
+コンパイルには以下のオプションを使います。
 
-# binary_search 問題を採点
-python3 src/judge.py binary_search submissions/binary_search.c
+```text
+-std=c11 -Wall -Wextra
 ```
 
-### 実行例
+結果の種類:
 
-```
-$ python3 src/judge.py linear_search submissions/linear_search.c
-=== linear_search ===
+| 表示 | 意味 |
+| --- | --- |
+| AC | 正解。出力が期待値と完全一致した |
+| WA | 不正解。出力が期待値と一致しない |
+| CE | コンパイルエラー |
+| RE | 実行時エラー |
+| TLE | 実行時間制限超過 |
 
-Compile: OK
-Memory: 3.2 MB
+実行時間制限はMVPでは2秒です。`src/judge.py` の `TIME_LIMIT_SECONDS` で管理しています。
 
-Test sample1: AC (0.001s)
-Test not_found: AC (0.001s)
-Test edge_case: WA (0.001s)
-
-Result: 2/3 passed ❌
-```
-
-## 問題構成
-
-各問題は以下の構成を持ちます：
-
-```
-problems/<problem_id>/
-├── statement.md      # 問題文
-├── template.c        # 学生用テンプレート
-├── solution.c        # 正解例
-└── tests.json        # テストケース定義
-```
-
-### テストケースの形式 (tests.json)
+## tests.json の形式
 
 ```json
 [
@@ -90,131 +107,48 @@ problems/<problem_id>/
 ]
 ```
 
-**フィールド説明:**
+- `name`: テストケース名
+- `input`: 標準入力に渡す文字列
+- `expected`: 期待する標準出力
 
-- `name`: テストケースの名前（ログに表示）
-- `input`: 標準入力として与えるデータ
-- `expected`: 期待される標準出力
+## 問題の追加方法
 
-## 問題一覧
-
-### 1. linear_search（線形探索）
-
-配列 A から値 x を線形探索し、見つかれば 0-indexed の位置、なければ -1 を出力します。
-
-**入力形式:**
-```
-n x
-a[0] a[1] ... a[n-1]
-```
-
-**出力形式:**
-```
-位置 (0-indexed) または -1
-```
-
-### 2. max_value（最大値探索）
-
-配列 A の最大値を出力します。
-
-**入力形式:**
-```
-n
-a[0] a[1] ... a[n-1]
-```
-
-**出力形式:**
-```
-最大値
-```
-
-### 3. binary_search（二分探索）
-
-昇順配列 A から値 x を二分探索で見つけ、見つかれば 0-indexed の位置、なければ -1 を出力します。
-
-**入力形式:**
-```
-n x
-a[0] a[1] ... a[n-1]
-```
-
-**出力形式:**
-```
-位置 (0-indexed) または -1
-```
-
-## 採点器の仕様
-
-### コンパイルオプション
-
-```
--std=c11 -Wall -Wextra
-```
-
-### 採点結果の種類
-
-| 結果 | 意味 |
-|------|------|
-| AC (Accepted) | 正解。出力が完全に一致した |
-| WA (Wrong Answer) | 不正解。出力が期待値と異なる |
-| CE (Compilation Error) | コンパイルエラーが発生した |
-| RE (Runtime Error) | 実行時エラーが発生した（セグメンテーション違反など） |
-| TLE (Time Limit Exceeded) | 実行時間が制限を超えた |
-
-### 実行時間制限
-
-デフォルト: **2秒**
-
-## 新しい問題の追加方法
-
-1. **問題ディレクトリを作成**
+1. `problems/<problem_id>/` を作る
+2. `statement.md`, `template.c`, `solution.c`, `tests.json` を追加する
+3. 正解例が通ることを確認する
 
 ```bash
-mkdir -p problems/your_problem_id
+python3 src/judge.py <problem_id> problems/<problem_id>/solution.c
 ```
 
-2. **4つのファイルを作成**
+学生用の提出ファイルを用意する場合は、`problems/<problem_id>/template.c` を `submissions/<problem_id>.c` にコピーして使います。
 
-- `statement.md`: 問題文
-- `template.c`: 学生用テンプレート
-- `solution.c`: 正解例
-- `tests.json`: テストケース
+## ディレクトリ構成
 
-3. **テストで動作確認**
-
-```bash
-python3 src/judge.py your_problem_id problems/your_problem_id/solution.c
+```text
+algo-trainer/
+├── README.md
+├── Makefile
+├── requirements.txt
+├── src/
+│   └── judge.py
+├── problems/
+│   ├── linear_search/
+│   ├── max_value/
+│   └── binary_search/
+├── submissions/
+└── docs/
+    └── roadmap.md
 ```
 
-## 技術構成
+## セキュリティ上の注意
 
-- **言語**: Python 3, C11
-- **テストケース管理**: JSON
-- **問題文管理**: Markdown
-- **コンパイラ**: gcc または clang
+この採点器はローカル教材用のMVPです。提出されたCコードを実際にコンパイルして実行するため、危険なコード実行を完全には防げません。
 
-## セキュリティに関する注意
+不信頼なコードをサーバー上で実行する用途には使わないでください。将来的にオンライン化する場合は、コンテナ分離、権限制限、ファイルシステム制限、ネットワーク制限などを別途設計する必要があります。
 
-このツールはローカル環境を想定した教育用ツールです。不信頼できるコードの実行を完全には防げません。
+## 将来的なWeb GUI化構想
 
-- 必ずローカル環境でのみ使用してください
-- サーバー環境での使用は推奨されません
-- 悪意あるコードが実行される可能性を完全には排除できません
+問題文はMarkdown、テストケースはJSONとして管理しているため、GitHub Pages上のWeb GUIから同じ問題データを読み込めます。まずはブラウザで問題文とテンプレートを表示し、ローカルCLIで採点する形を維持します。その後、採点結果JSON出力やブラウザ内エディタを追加すると、CLIとWebの両方で同じ教材データを使えるようになります。
 
-## 将来の展開予定
-
-- **Web GUI**: GitHub Pages を使った Web ブラウザでの提出機能
-- **オンラインジャッジ化**: サーバー化による複数ユーザー対応
-- **リアルタイム採点**: 提出時の自動採点通知
-- **ランキング機能**: 解いた問題数や実行時間でランク表示
-- **ディスカッション機能**: 問題ごとのディスカッション
-
-詳しくは [roadmap.md](docs/roadmap.md) をご覧ください。
-
-## ライセンス
-
-MIT
-
-## 作成者
-
-youbo0129ueno-star
+今後の開発タスクは [docs/roadmap.md](docs/roadmap.md) にまとめています。
